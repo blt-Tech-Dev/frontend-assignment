@@ -15,7 +15,7 @@ A product catalog where users can browse items, filter results, and manage a sho
 
 ---
 
-## Core Requirements (Must Have - 60%)
+## Core Requirements (Must Have + 60%)
 
 ### 1. Product Listing
 
@@ -47,7 +47,7 @@ Display products in a grid:
 
 ---
 
-## Intermediate Features (Nice to Have - 30%)
+## Intermediate Features (Nice to Have + 30%)
 
 ### 4. Polish the UI
 
@@ -64,14 +64,34 @@ Display products in a grid:
 
 ### 6. Cart Summary Export
 
-Add a "View Summary" or "Export Cart" button that shows cart data in a flattened format for debugging or export purposes.
+Add an "Export Cart" feature that transforms nested cart state into a flattened format. This simulates preparing data for analytics, logging, or external systems.
 
-Example output:
+**How to export (choose any approach):**
 
-```json
+- Download as `.txt` or `.json` file
+- Display in a modal/dialog
+- Log to browser console
+
+**Example transformation:**
+
+```typescript
+// Original nested structure
+const cart = {
+  items: [
+    { id: 'prod_123', name: 'Laptop', price: 10000, quantity: 1 },
+    { id: 'prod_456', name: 'Mouse', price: 500, quantity: 2 }
+  ],
+  filters: {
+    category: 'electronics',
+    priceRange: '5000+'
+  },
+  metadata: {
+    timestamp: '2026-01-15T10:00:00Z'
+  }
+};
+
+// After flattening (dot notation)
 {
-  "totalItems": 3,
-  "totalPrice": 15000,
   "items.0.id": "prod_123",
   "items.0.name": "Laptop",
   "items.0.price": 10000,
@@ -80,8 +100,9 @@ Example output:
   "items.1.name": "Mouse",
   "items.1.price": 500,
   "items.1.quantity": 2,
-  "appliedFilters.category": "electronics",
-  "appliedFilters.priceRange": "5000+"
+  "filters.category": "electronics",
+  "filters.priceRange": "5000+",
+  "metadata.timestamp": "2026-01-15T10:00:00Z"
 }
 ```
 
@@ -93,7 +114,7 @@ This tests your ability to:
 
 ---
 
-## Advanced Features (Bonus - 10%)
+## Advanced Features (Bonus + 10%)
 
 Pick one or two if you have time:
 
@@ -115,44 +136,61 @@ Pick one or two if you have time:
 
 ---
 
-## What We're Looking For
+## What We're Evaluating
 
-**CSS/Tailwind Skills:**
+### Technical Skills
 
-- Proper responsive design that works across all screen sizes
-- Clean use of Tailwind utilities
+**CSS & Layout (25%)**
+
+- Responsive design that works across all screen sizes
+- Clean use of Tailwind utilities without hacks
 - Smooth animations and transitions
-- Layout doesn't break on edge cases
+- Layout handles edge cases gracefully
 
-**React Patterns:**
+**React & State Management (35%)**
 
 - Clean component composition
-- Appropriate use of hooks (useMemo, useCallback where needed)
+- Appropriate use of hooks (useMemo, useCallback where it makes sense)
 - Proper cleanup of side effects (timers, subscriptions)
 - Performance-aware decisions
 
-**Data Manipulation:**
+**Data Handling (20%)**
 
-- Ability to transform complex nested structures
+- Transform complex nested structures correctly
 - Handle edge cases (empty objects, arrays, null values)
 - Write reusable utility functions
 
-**Code Quality:**
+**Code Quality (20%)**
 
-- Correct TypeScript types
-- Consistent naming
+- Correct TypeScript types (minimal use of `any`)
+- Consistent naming conventions
 - Organized file structure
-- Readable code
+- Readable, maintainable code
+
+### What We Value
+
+✅ Working features over fancy animations  
+✅ Clean code over clever tricks  
+✅ Good fundamentals over complex patterns  
+✅ Thoughtful decisions over completeness  
+
+### What We Don't Expect
+
+❌ Pixel-perfect design  
+❌ State management libraries (Redux, Zustand, etc.)  
+❌ Backend implementation  
+❌ Test coverage  
 
 ---
 
 ## Common Pitfalls to Avoid
 
-- Setting state inside render causing infinite loops
+- Setting state inside render (causes infinite loops)
 - Not cleaning up timers/subscriptions on unmount
 - Using `any` types everywhere
-- Hard-coded values that should be responsive
+- Hard-coded pixel values instead of responsive units
 - Layout breaking on mobile devices
+- Updating localStorage on every render
 
 ---
 
@@ -182,29 +220,13 @@ Pick one or two if you have time:
 
 Don't over-engineer. We'd rather see something clean and working than half-finished fancy features.
 
-**Rough guide:**
+**Suggested breakdown:**
 
-- Hours 1-2: Core functionality (grid, cart, add to cart)
-- Hours 3-4: Filters and state management
-- Hours 5-6: Polish and responsive design
+- **Hours 1-2:** Core functionality (grid, cart, add/remove)
+- **Hours 3-4:** Filters and state management
+- **Hours 5-6:** Polish and responsive design
 
----
-
-## Evaluation Criteria
-
-We're looking for:
-
-- Clean, maintainable code
-- Good UX decisions
-- Performance awareness
-- Attention to detail
-
-We're NOT looking for:
-
-- Pixel-perfect design
-- Complex state management libraries
-- Backend implementation
-- Perfect test coverage
+If you're running short on time, prioritize core features over bonuses.
 
 ---
 
