@@ -211,7 +211,7 @@ Pick one or two if you have time:
 
 ### Optional But Recommended
 
-- Deploy to Vercel
+- Deploy to Vercel (Bonus)
 - Include screenshots
 
 ---
