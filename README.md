@@ -41,9 +41,10 @@ Display products in a grid:
 - Real-time search by product name
 - Category filter (dropdown or tabs)
 - Price range filter:
-  - Under 1,000
-  - 1,000-5,000
-  - Over 5,000
+  - Under $50
+  - $50-$200
+  - Over $200
+  - **Bonus:** Implement as a draggable price range slider instead of fixed options
 
 ---
 
@@ -78,12 +79,12 @@ Add an "Export Cart" feature that transforms nested cart state into a flattened 
 // Original nested structure
 const cart = {
   items: [
-    { id: 'prod_123', name: 'Laptop', price: 10000, quantity: 1 },
-    { id: 'prod_456', name: 'Mouse', price: 500, quantity: 2 }
+    { id: 'prod_123', name: 'Gaming Monitor', price: 999.99, quantity: 1 },
+    { id: 'prod_456', name: 'T-Shirt', price: 22.30, quantity: 2 }
   ],
   filters: {
     category: 'electronics',
-    priceRange: '5000+'
+    priceRange: '$200+'
   },
   metadata: {
     timestamp: '2026-01-15T10:00:00Z'
@@ -93,15 +94,15 @@ const cart = {
 // After flattening (dot notation)
 {
   "items.0.id": "prod_123",
-  "items.0.name": "Laptop",
-  "items.0.price": 10000,
+  "items.0.name": "Gaming Monitor",
+  "items.0.price": 999.99,
   "items.0.quantity": 1,
   "items.1.id": "prod_456",
-  "items.1.name": "Mouse",
-  "items.1.price": 500,
+  "items.1.name": "T-Shirt",
+  "items.1.price": 22.30,
   "items.1.quantity": 2,
   "filters.category": "electronics",
-  "filters.priceRange": "5000+",
+  "filters.priceRange": "$200+",
   "metadata.timestamp": "2026-01-15T10:00:00Z"
 }
 ```
@@ -227,6 +228,14 @@ Don't over-engineer. We'd rather see something clean and working than half-finis
 - **Hours 5-6:** Polish and responsive design
 
 If you're running short on time, prioritize core features over bonuses.
+
+---
+
+## Changelog
+
+| Date | Change |
+|------|--------|
+| 2026-02-11 | Adjusted price range filter to match Fake Store API data (Under $50 / $50-$200 / Over $200). Added bonus for price range slider implementation. |
 
 ---
 
